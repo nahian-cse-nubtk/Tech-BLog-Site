@@ -5,6 +5,10 @@ const Navbar = (): JSX.Element => {
     const links=<>
     <li><Link href='/'>Home</Link></li>
     <li><Link href='/allBlogs'>All Blogs</Link></li>
+    <li><Link href='/recentBlogs'>Recent Blogs</Link></li>
+
+    <li><Link href='/about'>About</Link></li>
+    <li><Link href='/contact'>Contact</Link></li>
 
     </>
   return (
@@ -36,7 +40,7 @@ const Navbar = (): JSX.Element => {
           </ul>
         </div>
 
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <a className="btn btn-ghost text-xl">Tech Today</a>
       </div>
 
       <div className="navbar-center hidden lg:flex">
@@ -45,8 +49,9 @@ const Navbar = (): JSX.Element => {
         </ul>
       </div>
 
-      <div className="navbar-end">
-        <a className="btn">Button</a>
+      <div className=" navbar-end">
+        <a className="btn mr-3 btn-primary">Login</a>
+        <a className="btn btn-primary">Register</a>
       </div>
     </div>
   );
