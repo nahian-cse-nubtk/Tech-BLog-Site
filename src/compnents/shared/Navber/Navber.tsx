@@ -6,6 +6,7 @@ const Navbar = (): JSX.Element => {
     <li><Link href='/'>Home</Link></li>
     <li><Link href='/allBlogs'>All Blogs</Link></li>
     <li><Link href='/recentBlogs'>Recent Blogs</Link></li>
+    <li><Link href='/createBlog'>Create Blog</Link></li>
 
     <li><Link href='/about'>About</Link></li>
     <li><Link href='/contact'>Contact</Link></li>
