@@ -1,5 +1,7 @@
 "use client";
 
+
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 interface CreateBlogForm {
@@ -12,10 +14,11 @@ interface CreateBlogForm {
   readingTime: string;
   isFeatured: boolean;
   authorEmail: string;
-  createdAt: string;
+  createdAt?: string;
 }
 
 const CreateBlogPage = () => {
+    const router = useRouter()
   const [formData, setFormData] = useState<CreateBlogForm>({
     title: "",
     shortDescription: "",
@@ -56,7 +59,18 @@ const CreateBlogPage = () => {
 
     console.log("Blog Data:", finalData);
 
-    // await createBlog(finalData)
+    const res = await fetch('/api/posts',{
+        method: "POST",
+        headers: {
+            "Content-Type": "applications/json",
+        },
+        body: JSON.stringify(finalData)
+    })
+    const response = await res.json()
+    if(response.insertedId){
+        alert('blog creation Successfull')
+        router.push('/')
+    }
   };
 
   return (
@@ -151,7 +165,7 @@ const CreateBlogPage = () => {
           readOnly
         />
 
-        
+
 
         <button type="submit" className="btn btn-primary w-full">
           Publish Blog

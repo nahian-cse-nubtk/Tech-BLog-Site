@@ -10,5 +10,5 @@ export type Blog={
       readingTime: string;
       isFeatured: boolean;
       authorEmail: string;
-      createdAt: string;
+      createdAt?: string;
 }

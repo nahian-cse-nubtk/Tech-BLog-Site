@@ -14,7 +14,7 @@ const RecentBlogs = async():Promise<JSX.Element>  => {
         <p className="mt-3 text-center text-gray-500  ">
           Explore the recent news
         </p>
-        <div className='grid grid-cols-1 md:grid-cols-3 my-5'>
+        <div className='grid grid-cols-1 md:grid-cols-3 gap-5 my-5'>
             {
                 result.map(blog=><BlogPostCard blog={blog} key={blog._id.toString()}></BlogPostCard>)
             }
