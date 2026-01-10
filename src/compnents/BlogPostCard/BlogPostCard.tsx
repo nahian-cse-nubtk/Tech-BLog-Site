@@ -7,7 +7,7 @@ type BlogPostCardProps = {
 };
 
 const BlogPostCard = ({blog}: BlogPostCardProps) => {
-    const {_id,image,title,readingTime}=blog
+    const {_id,image,title,readingTime,shortDescription}=blog
   return (
     <div className="card bg-base-100 shadow-md hover:shadow-xl transition-all duration-300">
       <figure className="relative h-48">
@@ -26,6 +26,7 @@ const BlogPostCard = ({blog}: BlogPostCardProps) => {
         <p className="text-sm text-gray-500">
           ⏱ {readingTime}
         </p>
+        <p className="text-sm text-gray-500">{shortDescription}</p>
 
         <div className="card-actions justify-end mt-3">
           <Link href='/' className="btn btn-primary btn-sm">

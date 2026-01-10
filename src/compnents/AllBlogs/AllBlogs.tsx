@@ -7,8 +7,8 @@ const AllBlogs = async (): Promise<JSX.Element> => {
     const result:Blog[] = await getPost()
   return (
     <div>
-        <h1 className='text-4xl font-bold '> All Blogs: {result.length}</h1>
-        <div>
+        <h1 className='text-4xl font-bold py-10'> All Blogs: {result.length}</h1>
+        <div className='grid grid-cols-1 md:grid-cols-3 my-5'>
             {
                 result.map(blog=><BlogPostCard blog={blog} key={blog._id.toString()}></BlogPostCard>)
             }
