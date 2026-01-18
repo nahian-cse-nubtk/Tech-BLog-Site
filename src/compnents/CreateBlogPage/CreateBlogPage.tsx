@@ -1,6 +1,8 @@
 "use client";
 
 
+
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
@@ -14,11 +16,13 @@ interface CreateBlogForm {
   tags: string;
   readingTime: string;
   isFeatured: boolean;
-  authorEmail: string;
+  authorEmail?: string |null ;
   createdAt?: string;
 }
 
 const CreateBlogPage = () => {
+  const session =useSession()
+
     const router = useRouter()
   const [formData, setFormData] = useState<CreateBlogForm>({
     title: "",
@@ -29,7 +33,7 @@ const CreateBlogPage = () => {
     tags: "",
     readingTime: "",
     isFeatured: false,
-    authorEmail: "sheikhalnahian@gmail.com",
+    authorEmail: session.data?.user?.email,
 
   });
 
@@ -162,7 +166,7 @@ const CreateBlogPage = () => {
           type="email"
           name="authorEmail"
           className="input input-bordered w-full"
-          value={formData.authorEmail}
+          value={formData.authorEmail ?? ""}
           readOnly
         />
 

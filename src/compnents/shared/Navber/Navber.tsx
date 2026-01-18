@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const Navbar = async () => {
   const session = await getServerSession(authOptions);
-  console.log(session)
+
 
   const links = (
     <>
@@ -91,7 +91,9 @@ const Navbar = async () => {
                 className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
               >
                 <li>
-                  <SignOut></SignOut>
+
+                    <SignOut/>
+
                 </li>
 
               </ul>
