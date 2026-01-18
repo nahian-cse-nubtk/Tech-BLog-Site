@@ -1,6 +1,7 @@
 import { Blog } from "@/type/Blog";
 import clientPromise from "./mongodb"
 import { Collection, Document } from "mongodb";
+import { User } from "@/type/User";
 
 
 
@@ -13,3 +14,4 @@ const dbConnect =async<T extends Document>(collecionName:string):Promise<Collect
 
 }
 export const postCollection =await dbConnect<Blog>('posts')
+export const userCollection = await dbConnect<User>('Users')
