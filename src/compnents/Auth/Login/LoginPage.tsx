@@ -2,6 +2,7 @@
 
 import { signIn } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function LoginPage() {
@@ -68,7 +69,7 @@ export default function LoginPage() {
         </div>
 
         <button
-          onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
+          onClick={() => signIn("google", { callbackUrl: "/" })}
           className="w-full flex items-center justify-center gap-3 py-2 rounded-lg bg-gray-200 hover:bg-gray-100 transition text-gray-800 font-semibold"
         >
           <Image width={400} height={300}
@@ -78,6 +79,12 @@ export default function LoginPage() {
           />
           Continue with Google
         </button>
+        <p className="mt-6 text-center text-gray-400 text-sm">
+                  Don't have an account?{" "}
+                  <Link href="/register" className="text-blue-400 hover:underline">
+                    Register
+                  </Link>
+                </p>
       </div>
     </div>
   );

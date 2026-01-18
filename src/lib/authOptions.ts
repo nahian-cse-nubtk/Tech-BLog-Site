@@ -1,8 +1,9 @@
 import { retriveUser } from "@/actions/server";
 import CredentialsProvider from "next-auth/providers/credentials";
-
-
-export const authOptions = {
+import GoogleProvider from "next-auth/providers/google";
+import { userCollection } from "./dbconnect";
+import { NextAuthOptions, User, Account } from "next-auth";
+export const authOptions:NextAuthOptions = {
   // Configure one or more authentication providers
   providers: [
 
@@ -18,7 +19,7 @@ export const authOptions = {
          email: { label: "email", type: "text", placeholder: "jsmith" },
         password: { label: "Password", type: "password" },
     },
-    async authorize(credentials, req) {
+    async authorize(credentials) {
         if (!credentials) return null;
       // Add logic here to look up the user from the credentials supplied
       const user = await retriveUser(credentials)
@@ -33,6 +34,57 @@ export const authOptions = {
         // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
       }
     }
+  }),
+  GoogleProvider({
+    clientId: process.env.GOOGLE_CLIENT_ID!,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET!
   })
   ],
+  secret: process.env.NEXTAUTH_SECRET,
+  callbacks: {
+  async signIn({
+  user,
+  account,
+}: {
+  user: User ;
+  account: Account | null;
+  email?: { verificationRequest?: boolean };
+
+}) {
+  if (!account) return false; // safety
+
+  // check if user already exists
+  if (!user.email) return false;
+  const isExist = await userCollection.findOne({
+    email: user.email,
+    provider: account.provider,
+  });
+
+  if (isExist) return true;
+
+  const newUser = {
+    provider: account.provider,
+    name: user.name ?? "Unknown",
+    email: user.email,
+    image: user.image ?? null,
+    role: "user",
+  };
+
+  const result = await userCollection.insertOne(newUser);
+
+  return result.acknowledged;
+},
+  async redirect({ url, baseUrl}) {
+     if (url.startsWith("/")) return `${baseUrl}${url}`;
+    // allow same-origin URLs
+    if (new URL(url).origin === baseUrl) return url;
+    return baseUrl
+},
+  async session({ session }) {
+    return session
+  },
+  async jwt({ token}) {
+    return token
+  }
+}
 }

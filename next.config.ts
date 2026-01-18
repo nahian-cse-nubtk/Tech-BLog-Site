@@ -12,6 +12,13 @@ const nextConfig: NextConfig = {
         pathname: '/v2/resize:fit:1400/**',
         search: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'img.daisyui.com',
+        port: '',
+        pathname: '/images/profile/**',
+        search: '',
+      },
     ],
   },
 };
