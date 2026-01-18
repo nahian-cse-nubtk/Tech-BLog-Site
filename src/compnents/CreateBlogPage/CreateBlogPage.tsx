@@ -3,6 +3,7 @@
 
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 interface CreateBlogForm {
   title: string;
@@ -57,7 +58,7 @@ const CreateBlogPage = () => {
 
     };
 
-    console.log("Blog Data:", finalData);
+
 
     const res = await fetch('/api/posts',{
         method: "POST",
@@ -68,7 +69,7 @@ const CreateBlogPage = () => {
     })
     const response = await res.json()
     if(response.insertedId){
-        alert('blog creation Successfull')
+        toast('blog creation Successfull')
         router.push('/')
     }
   };
