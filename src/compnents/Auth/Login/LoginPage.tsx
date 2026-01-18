@@ -19,11 +19,19 @@ export default function LoginPage() {
     });
   };
 
+  const handleDemoLogin = async () => {
+    await signIn("credentials", {
+      email: "nahian@gmail.com",
+      password: "12345678",
+      callbackUrl: "/",
+    });
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-100 px-4">
-      <div className="w-full max-w-md  backdrop-blur-xl rounded-2xl shadow-xl p-8 border border-white/20">
+      <div className="w-full max-w-md backdrop-blur-xl rounded-2xl shadow-xl p-8 border border-white/20">
         <h1 className="text-3xl font-bold text-black text-center mb-2">
-          Welcome to Daily Tech Blog 👋
+          Welcome to Daily Tech Blog
         </h1>
         <p className="text-black text-center mb-6">
           Sign in to explore the latest tech insights and stories.
@@ -38,7 +46,7 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full px-4 py-2 rounded-lg  text-black border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 rounded-lg text-black border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -50,7 +58,7 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full px-4 py-2 rounded-lg  text-black border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 rounded-lg text-black border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -62,6 +70,14 @@ export default function LoginPage() {
           </button>
         </form>
 
+        {/* Demo Login Button */}
+        <button
+          onClick={handleDemoLogin}
+          className="w-full mt-3 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 transition text-white font-semibold"
+        >
+          Login as Demo User
+        </button>
+
         <div className="flex items-center my-6">
           <div className="grow h-px bg-gray-600" />
           <span className="mx-3 text-gray-400 text-sm">OR</span>
@@ -72,19 +88,22 @@ export default function LoginPage() {
           onClick={() => signIn("google", { callbackUrl: "/" })}
           className="w-full flex items-center justify-center gap-3 py-2 rounded-lg bg-gray-200 hover:bg-gray-100 transition text-gray-800 font-semibold"
         >
-          <Image width={400} height={300}
+          <Image
+            width={24}
+            height={24}
             src="https://www.svgrepo.com/show/475656/google-color.svg"
             alt="Google"
             className="w-5 h-5"
           />
           Continue with Google
         </button>
+
         <p className="mt-6 text-center text-gray-400 text-sm">
-                  Don't have an account?{" "}
-                  <Link href="/register" className="text-blue-400 hover:underline">
-                    Register
-                  </Link>
-                </p>
+          Don't have an account?{" "}
+          <Link href="/register" className="text-blue-400 hover:underline">
+            Register
+          </Link>
+        </p>
       </div>
     </div>
   );
