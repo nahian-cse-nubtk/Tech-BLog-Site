@@ -5,8 +5,7 @@ import React from 'react';
 const SignOut = () => {
     return (
         <div>
-            <button onClick={()=>signOut}>Sign Out</button>
-
+            <button className='font-bold'  onClick={()=>signOut()}>Sign Out</button>
         </div>
     );
 };

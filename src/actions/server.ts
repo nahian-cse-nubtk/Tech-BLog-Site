@@ -4,10 +4,17 @@ import { User } from '@/type/User';
 import { postCollection, userCollection } from './../lib/dbconnect';
 import { Register } from "@/type/Register";
 import { DBUser } from "@/type/DBUser";
+import { ObjectId } from "mongodb";
 
 export const getPost =async(limit: number = 0)=>{
     const result = await postCollection.find({}).sort({createdAt: -1}).limit(limit).toArray()
     return result;
+}
+export const getPostDetails = async(id:string)=>{
+    const query ={_id:new ObjectId(id)}
+    const result = await postCollection.findOne(query)
+    return result;
+
 }
 
 export const retriveUser = async (payload: User) => {

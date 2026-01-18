@@ -56,9 +56,9 @@ const NewsCategory = (): JSX.Element => {
   return (
     <section className="my-14">
       <div className="mb-6">
-        <h2 className="text-3xl font-bold text-center">Browse Categories</h2>
+        <h2 className="text-3xl font-bold text-center">Categories</h2>
         <p className="text-xl text-gray-500 text-center">
-          Explore articles by topic
+          Explore the recent technical news
         </p>
       </div>
 
@@ -88,14 +88,7 @@ const NewsCategory = (): JSX.Element => {
                 {category.count} Articles
               </p>
 
-              <div className="card-actions justify-end mt-2">
-                <a
-                  href={`/category/${category.slug}`}
-                  className="btn btn-sm btn-outline"
-                >
-                  View Posts
-                </a>
-              </div>
+              
             </div>
           </div>
         ))}

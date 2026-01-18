@@ -29,7 +29,7 @@ const BlogPostCard = ({blog}: BlogPostCardProps) => {
         <p className="text-sm text-gray-500">{shortDescription}</p>
 
         <div className="card-actions justify-end mt-3">
-          <Link href='/' className="btn btn-primary btn-sm">
+          <Link href={`/blogdetails/${_id}`} className="btn btn-primary btn-sm">
             View Details
           </Link>
         </div>

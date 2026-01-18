@@ -7,6 +7,7 @@ import Link from "next/link";
 
 const Navbar = async () => {
   const session = await getServerSession(authOptions);
+  console.log(session)
 
   const links = (
     <>
@@ -73,7 +74,7 @@ const Navbar = async () => {
       </div>
 
       <div className=" navbar-end">
-        {session?.user ? (
+        {session?.user? (
           <div>
             <div className="dropdown dropdown-end">
               <div tabIndex={0} role="button" className=" m-1">
